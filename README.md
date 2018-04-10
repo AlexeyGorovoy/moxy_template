@@ -16,4 +16,4 @@ Libraries included:
 - [Gson](https://github.com/google/gson)
 - a bunch of Android Support libraries.
 
-All libraries included are the latest versions available on April 07, 2018.
+All libraries included are the latest versions available on April 10, 2018.
