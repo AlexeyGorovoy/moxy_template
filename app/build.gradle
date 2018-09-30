@@ -39,7 +39,6 @@ dependencies {
     def rxJavaVersion = '1.3.6'
     def rxAndroidVersion = '1.2.1'
     def daggerVersion = '2.14.1'
-    def butterKnifeVersion = '8.8.1'
     def supportVersion = '28.0.0'
     def moxyVersion = '1.5.3'
 
