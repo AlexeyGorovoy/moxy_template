@@ -4,16 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.github.alexeygorovoy.moxy_template.R
 import com.github.alexeygorovoy.moxy_template.dagger.demo.splash.SplashModule
 import com.github.alexeygorovoy.moxy_template.navigation.Router
-import com.github.alexeygorovoy.moxy_template.ui.common.BaseActivity
 import com.github.alexeygorovoy.moxy_template.ui.common.moxy.BaseMvpFragment
 import com.github.alexeygorovoy.moxy_template.ui.demo.splash.presenter.SplashPresenter
-
 import javax.inject.Inject
 
 class SplashFragment : BaseMvpFragment(), SplashView {

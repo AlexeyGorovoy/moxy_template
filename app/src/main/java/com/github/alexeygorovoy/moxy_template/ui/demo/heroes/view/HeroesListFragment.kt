@@ -1,14 +1,10 @@
 package com.github.alexeygorovoy.moxy_template.ui.demo.heroes.view
 
 import android.os.Bundle
-import android.support.v4.widget.ContentLoadingProgressBar
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import butterknife.BindView
-import butterknife.ButterKnife
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.github.alexeygorovoy.moxy_template.R
@@ -18,6 +14,7 @@ import com.github.alexeygorovoy.moxy_template.navigation.Router
 import com.github.alexeygorovoy.moxy_template.ui.common.moxy.BaseMvpFragment
 import com.github.alexeygorovoy.moxy_template.ui.demo.heroes.presenter.HeroesListPresenter
 import com.github.alexeygorovoy.moxy_template.ui.demo.heroes.view.adapter.HeroesAdapter
+import kotlinx.android.synthetic.main.fragment_heroes_list.*
 import javax.inject.Inject
 
 class HeroesListFragment : BaseMvpFragment(), HeroesListView {
@@ -28,12 +25,6 @@ class HeroesListFragment : BaseMvpFragment(), HeroesListView {
     @Inject
     @InjectPresenter
     lateinit var presenter: HeroesListPresenter
-
-    @BindView(R.id.heroes_list)
-    lateinit var list: RecyclerView
-
-    @BindView(R.id.progress_bar)
-    lateinit var progressBar: ContentLoadingProgressBar
 
     private var adapter: HeroesAdapter = HeroesAdapter()
 
@@ -54,15 +45,13 @@ class HeroesListFragment : BaseMvpFragment(), HeroesListView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        ButterKnife.bind(this, view)
-
         val sub = adapter.onHeroClickedObservable()
             .subscribe { hero -> router.openHeroDetails(baseActivity, hero) }
         unsubscribeOnDestroyView(sub)
 
-        list.adapter = adapter
+        heroesList.adapter = adapter
         val mLayoutManager = LinearLayoutManager(requireContext())
-        list.layoutManager = mLayoutManager
+        heroesList.layoutManager = mLayoutManager
     }
 
     override fun showHeroes(heroes: List<Hero>) {

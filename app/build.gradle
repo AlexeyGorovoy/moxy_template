@@ -23,7 +23,9 @@ android {
         targetCompatibility 1.8
         sourceCompatibility 1.8
     }
-
+    androidExtensions {
+        experimental = true
+    }
 }
 
 
@@ -73,8 +75,6 @@ dependencies {
     kaptAndroidTest "com.google.dagger:dagger-compiler:$daggerVersion"
 
     compileOnly "javax.annotation:jsr250-api:1.0"
-    implementation "com.jakewharton:butterknife:$butterKnifeVersion"
-    kapt "com.jakewharton:butterknife-compiler:$butterKnifeVersion"
 
     // Moxy
     implementation "com.arello-mobile:moxy:$moxyVersion"
