@@ -14,7 +14,7 @@ class SplashPresenter(private val rxSchedulers: RxSchedulers) : BaseMvpPresenter
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
         // real loading will happen here if needed
-        val sub = Single.just("")
+        Single.just("")
             .delay(500, TimeUnit.MILLISECONDS)
             .compose(rxSchedulers.computationToMainSingle())
             .subscribe(
@@ -24,6 +24,6 @@ class SplashPresenter(private val rxSchedulers: RxSchedulers) : BaseMvpPresenter
                 },
                 { throwable -> Timber.e(throwable, "error on splash!") }
             )
-        unsubscribeOnDestroy(sub)
+            .unsubscribeOnDestroy()
     }
 }

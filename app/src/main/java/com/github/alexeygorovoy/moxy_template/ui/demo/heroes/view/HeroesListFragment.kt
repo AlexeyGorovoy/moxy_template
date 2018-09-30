@@ -45,9 +45,9 @@ class HeroesListFragment : BaseMvpFragment(), HeroesListView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val sub = adapter.onHeroClickedObservable()
+        adapter.onHeroClickedObservable()
             .subscribe { hero -> router.openHeroDetails(baseActivity, hero) }
-        unsubscribeOnDestroyView(sub)
+            .unsubscribeOnDestroyView()
 
         heroesList.adapter = adapter
         val mLayoutManager = LinearLayoutManager(requireContext())

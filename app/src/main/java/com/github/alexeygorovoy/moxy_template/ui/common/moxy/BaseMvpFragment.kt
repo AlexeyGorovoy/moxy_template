@@ -32,8 +32,8 @@ open class BaseMvpFragment : MvpAppCompatFragment(), BaseMvpView {
         super.onDestroyView()
     }
 
-    protected fun unsubscribeOnDestroyView(subscription: Subscription) {
-        subscriptions.add(subscription)
+    protected fun Subscription.unsubscribeOnDestroyView() {
+        subscriptions.add(this)
     }
 
     override fun showInfoToast(message: CharSequence) {

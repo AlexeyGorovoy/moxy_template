@@ -21,8 +21,8 @@ abstract class BaseMvpPresenter<View : MvpView> : MvpPresenter<View>() {
         }
     }
 
-    protected fun unsubscribeOnDestroy(sub: Subscription) {
-        subscriptions.add(sub)
+    protected fun Subscription.unsubscribeOnDestroy() {
+        subscriptions.add(this)
     }
 
     override fun onDestroy() {

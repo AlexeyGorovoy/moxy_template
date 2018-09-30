@@ -6,12 +6,9 @@ import com.github.alexeygorovoy.moxy_template.api.models.Hero
 import com.github.alexeygorovoy.moxy_template.ui.common.moxy.BaseMvpPresenter
 import com.github.alexeygorovoy.moxy_template.ui.demo.heroes.view.HeroesListView
 import com.github.alexeygorovoy.moxy_template.utils.rx.RxSchedulers
-
+import timber.log.Timber
 import java.util.ArrayList
 import java.util.concurrent.TimeUnit
-
-import rx.Subscription
-import timber.log.Timber
 
 @InjectViewState
 class HeroesListPresenter(
@@ -27,7 +24,7 @@ class HeroesListPresenter(
     }
 
     private fun loadHeroesList() {
-        val sub = heroApi.getHeroes()
+        heroApi.getHeroes()
             .delay(500, TimeUnit.MILLISECONDS)
             .compose(rxSchedulers.ioToMain())
             .compose(progressTransformer())
@@ -38,7 +35,6 @@ class HeroesListPresenter(
                     viewState.showHeroes(heroes)
                 },
                 { throwable -> Timber.e(throwable, "Error loading heroes list!") }
-            )
-        unsubscribeOnDestroy(sub)
+            ).unsubscribeOnDestroy()
     }
 }
