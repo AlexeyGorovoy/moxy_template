@@ -7,7 +7,6 @@ import com.github.alexeygorovoy.moxytemplate.dagger.app.AppContextModule;
 import com.github.alexeygorovoy.moxytemplate.dagger.app.DaggerAppComponent;
 import com.squareup.leakcanary.LeakCanary;
 
-import timber.log.BuildConfig;
 import timber.log.Timber;
 
 

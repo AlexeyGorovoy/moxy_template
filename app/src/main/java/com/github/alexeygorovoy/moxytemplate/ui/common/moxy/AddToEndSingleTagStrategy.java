@@ -19,8 +19,9 @@ public class AddToEndSingleTagStrategy implements StateStrategy {
                 iterator.remove();
             }
 
-            currentState.add(incomingCommand);
         }
+
+        currentState.add(incomingCommand);
     }
 
     @Override
