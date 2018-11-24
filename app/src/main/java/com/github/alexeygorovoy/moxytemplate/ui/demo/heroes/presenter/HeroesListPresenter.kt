@@ -27,7 +27,7 @@ class HeroesListPresenter(
         heroApi.getHeroes()
             .delay(500, TimeUnit.MILLISECONDS)
             .compose(rxSchedulers.ioToMain())
-            .compose(progressTransformer())
+            .progress()
             .subscribe(
                 { result ->
                     heroes.clear()
