@@ -15,8 +15,8 @@ class AddToEndSingleTagStrategy : StateStrategy {
                 iterator.remove()
             }
 
-            currentState.add(incomingCommand)
         }
+        currentState.add(incomingCommand)
     }
 
     override fun <View : MvpView> afterApply(currentState: List<ViewCommand<View>>, incomingCommand: ViewCommand<View>) {}
