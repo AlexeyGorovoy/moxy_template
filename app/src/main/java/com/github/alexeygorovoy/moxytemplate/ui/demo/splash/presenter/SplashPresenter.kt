@@ -19,7 +19,6 @@ class SplashPresenter(private val rxSchedulers: RxSchedulers) : BaseMvpPresenter
             .compose(rxSchedulers.computationToMainSingle())
             .subscribe(
                 {
-                    viewState.showSuccessToast("App started!")
                     viewState.openHeroesScreen()
                 },
                 { throwable -> Timber.e(throwable, "error on splash!") }

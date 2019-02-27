@@ -1,8 +1,8 @@
 package com.github.alexeygorovoy.moxytemplate.ui.demo.heroes.view.adapter
 
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.github.alexeygorovoy.moxytemplate.R
 import com.github.alexeygorovoy.moxytemplate.api.models.Hero
 import rx.Observable
