@@ -5,8 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.github.alexeygorovoy.moxytemplate.R
 import com.github.alexeygorovoy.moxytemplate.api.models.Hero
-import rx.Observable
-import rx.subjects.PublishSubject
 import java.util.ArrayList
 
 class HeroesAdapter(private val onClickListener: (hero: Hero) -> Unit) : RecyclerView.Adapter<HeroViewHolder>() {
@@ -20,7 +18,7 @@ class HeroesAdapter(private val onClickListener: (hero: Hero) -> Unit) : Recycle
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HeroViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_hero, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.hero_item, parent, false)
         return HeroViewHolder(view, onClickListener)
     }
 

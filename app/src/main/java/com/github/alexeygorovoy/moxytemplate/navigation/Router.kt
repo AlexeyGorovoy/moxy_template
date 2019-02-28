@@ -5,6 +5,10 @@ import com.github.alexeygorovoy.moxytemplate.api.models.Hero
 
 class Router: Router() {
 
+    fun openSplashScreen() {
+        newRootScreen(Screens.SplashScreen())
+    }
+
     fun openHeroListScreen() {
         newRootScreen(Screens.HeroesListScreen())
     }

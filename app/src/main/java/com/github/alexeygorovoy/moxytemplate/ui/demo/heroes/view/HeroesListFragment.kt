@@ -13,9 +13,8 @@ import com.github.alexeygorovoy.moxytemplate.dagger.demo.heroes.HeroesModule
 import com.github.alexeygorovoy.moxytemplate.navigation.Router
 import com.github.alexeygorovoy.moxytemplate.ui.common.moxy.BaseMvpFragment
 import com.github.alexeygorovoy.moxytemplate.ui.demo.heroes.presenter.HeroesListPresenter
-import com.github.alexeygorovoy.moxytemplate.ui.demo.heroes.presenter.HeroesListPresenterImpl
 import com.github.alexeygorovoy.moxytemplate.ui.demo.heroes.view.adapter.HeroesAdapter
-import kotlinx.android.synthetic.main.fragment_heroes_list.*
+import kotlinx.android.synthetic.main.heroes_list_fragment.*
 import javax.inject.Inject
 
 class HeroesListFragment : BaseMvpFragment(), HeroesListView {
@@ -38,7 +37,7 @@ class HeroesListFragment : BaseMvpFragment(), HeroesListView {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_heroes_list, container, false)
+        return inflater.inflate(R.layout.heroes_list_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

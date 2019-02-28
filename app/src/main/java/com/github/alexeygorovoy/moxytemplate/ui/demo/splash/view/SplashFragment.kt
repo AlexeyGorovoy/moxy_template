@@ -1,6 +1,5 @@
 package com.github.alexeygorovoy.moxytemplate.ui.demo.splash.view
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +8,6 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.github.alexeygorovoy.moxytemplate.R
 import com.github.alexeygorovoy.moxytemplate.dagger.demo.splash.SplashModule
-import com.github.alexeygorovoy.moxytemplate.ui.common.MainActivity
 import com.github.alexeygorovoy.moxytemplate.ui.common.moxy.BaseMvpFragment
 import com.github.alexeygorovoy.moxytemplate.ui.demo.splash.presenter.SplashPresenter
 import javax.inject.Inject
@@ -30,13 +28,17 @@ class SplashFragment : BaseMvpFragment(), SplashView {
         super.onCreate(savedInstanceState)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_splash, container, false)
+    override fun onResume() {
+        super.onResume()
+        baseActivity.supportActionBar?.hide()
     }
 
-    override fun startMainActivity() {
-        val activity = baseActivity
-        activity.startActivity(Intent(activity, MainActivity::class.java))
-        activity.finish()
+    override fun onStop() {
+        super.onStop()
+        baseActivity.supportActionBar?.show()
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.splash_fragment, container, false)
     }
 }

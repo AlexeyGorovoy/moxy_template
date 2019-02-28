@@ -13,7 +13,7 @@ import com.github.alexeygorovoy.moxytemplate.api.models.Hero
 import com.github.alexeygorovoy.moxytemplate.dagger.demo.details.HeroDetailsModule
 import com.github.alexeygorovoy.moxytemplate.ui.common.moxy.BaseMvpFragment
 import com.github.alexeygorovoy.moxytemplate.ui.demo.details.presenter.HeroDetailsPresenter
-import kotlinx.android.synthetic.main.fragment_hero_details.*
+import kotlinx.android.synthetic.main.hero_details_fragment.*
 import javax.inject.Inject
 
 class HeroDetailsFragment : BaseMvpFragment(), HeroDetailsView {
@@ -33,7 +33,7 @@ class HeroDetailsFragment : BaseMvpFragment(), HeroDetailsView {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_hero_details, container, false)
+        return inflater.inflate(R.layout.hero_details_fragment, container, false)
     }
 
     override fun showHero(hero: Hero) {
