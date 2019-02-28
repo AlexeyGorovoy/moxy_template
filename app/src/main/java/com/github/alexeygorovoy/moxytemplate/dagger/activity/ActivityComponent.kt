@@ -7,6 +7,7 @@ import com.github.alexeygorovoy.moxytemplate.dagger.demo.heroes.HeroesModule
 import com.github.alexeygorovoy.moxytemplate.dagger.demo.splash.SplashComponent
 import com.github.alexeygorovoy.moxytemplate.dagger.demo.splash.SplashModule
 import com.github.alexeygorovoy.moxytemplate.ui.common.BaseActivity
+import com.github.alexeygorovoy.moxytemplate.ui.common.MainActivity
 
 import dagger.Subcomponent
 
@@ -19,5 +20,6 @@ interface ActivityComponent {
     operator fun plus(module: HeroDetailsModule): HeroDetailsComponent
 
     fun inject(baseActivity: BaseActivity)
+    fun inject(baseActivity: MainActivity)
 
 }

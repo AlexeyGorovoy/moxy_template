@@ -1,4 +1,4 @@
-package com.github.alexeygorovoy.moxytemplate.utils.rx
+package com.github.alexeygorovoy.moxytemplate.rx
 
 import rx.Completable
 import rx.Observable

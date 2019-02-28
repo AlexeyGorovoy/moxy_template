@@ -1,5 +1,6 @@
 package com.github.alexeygorovoy.moxytemplate.ui.demo.splash.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,15 +9,12 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.github.alexeygorovoy.moxytemplate.R
 import com.github.alexeygorovoy.moxytemplate.dagger.demo.splash.SplashModule
-import com.github.alexeygorovoy.moxytemplate.navigation.Router
+import com.github.alexeygorovoy.moxytemplate.ui.common.MainActivity
 import com.github.alexeygorovoy.moxytemplate.ui.common.moxy.BaseMvpFragment
 import com.github.alexeygorovoy.moxytemplate.ui.demo.splash.presenter.SplashPresenter
 import javax.inject.Inject
 
 class SplashFragment : BaseMvpFragment(), SplashView {
-
-    @Inject
-    lateinit var router: Router
 
     @Inject
     @InjectPresenter
@@ -36,9 +34,9 @@ class SplashFragment : BaseMvpFragment(), SplashView {
         return inflater.inflate(R.layout.fragment_splash, container, false)
     }
 
-    override fun openHeroesScreen() {
+    override fun startMainActivity() {
         val activity = baseActivity
-        router.startMainActivity(activity)
+        activity.startActivity(Intent(activity, MainActivity::class.java))
         activity.finish()
     }
 }

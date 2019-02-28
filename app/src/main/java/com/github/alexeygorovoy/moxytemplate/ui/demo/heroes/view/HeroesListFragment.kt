@@ -13,13 +13,10 @@ import com.github.alexeygorovoy.moxytemplate.dagger.demo.heroes.HeroesModule
 import com.github.alexeygorovoy.moxytemplate.navigation.Router
 import com.github.alexeygorovoy.moxytemplate.ui.common.moxy.BaseMvpFragment
 import com.github.alexeygorovoy.moxytemplate.ui.demo.heroes.presenter.HeroesListPresenter
+import com.github.alexeygorovoy.moxytemplate.ui.demo.heroes.presenter.HeroesListPresenterImpl
 import com.github.alexeygorovoy.moxytemplate.ui.demo.heroes.view.adapter.HeroesAdapter
 import kotlinx.android.synthetic.main.fragment_heroes_list.*
 import javax.inject.Inject
-import io.card.payment.CardIOActivity
-import android.content.Intent
-
-
 
 class HeroesListFragment : BaseMvpFragment(), HeroesListView {
 
@@ -30,12 +27,10 @@ class HeroesListFragment : BaseMvpFragment(), HeroesListView {
     @InjectPresenter
     lateinit var presenter: HeroesListPresenter
 
-    private var adapter: HeroesAdapter = HeroesAdapter()
+    private var adapter: HeroesAdapter = HeroesAdapter(this::onHeroClick)
 
     @ProvidePresenter
-    fun providePresenter(): HeroesListPresenter {
-        return presenter
-    }
+    fun providePresenter(): HeroesListPresenter = presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         activityComponent.plus(HeroesModule()).inject(this)
@@ -49,15 +44,9 @@ class HeroesListFragment : BaseMvpFragment(), HeroesListView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter.onHeroClickedObservable()
-            .subscribe { hero -> router.openHeroDetails(baseActivity, hero) }
-            .unsubscribeOnDestroyView()
-
         heroesList.adapter = adapter
         val mLayoutManager = LinearLayoutManager(requireContext())
         heroesList.layoutManager = mLayoutManager
-
-        cardButton.setOnClickListener { onScanPress() }
     }
 
     override fun showHeroes(heroes: List<Hero>) {
@@ -72,19 +61,8 @@ class HeroesListFragment : BaseMvpFragment(), HeroesListView {
         progressBar.hide()
     }
 
-    fun onScanPress() {
-        val scanIntent = Intent(this.context, CardIOActivity::class.java)
-
-        // customize these values to suit your needs.
-        scanIntent.putExtra(CardIOActivity.EXTRA_REQUIRE_EXPIRY, true) // default: false
-        scanIntent.putExtra(CardIOActivity.EXTRA_REQUIRE_CVV, false) // default: false
-        scanIntent.putExtra(CardIOActivity.EXTRA_REQUIRE_POSTAL_CODE, false) // default: false
-        scanIntent.putExtra(CardIOActivity.EXTRA_GUIDE_COLOR, resources.getColor(R.color.bla)) // default: false
-        scanIntent.putExtra(CardIOActivity.EXTRA_REQUIRE_CARDHOLDER_NAME, true) // default: false
-        scanIntent.putExtra(CardIOActivity.EXTRA_HIDE_CARDIO_LOGO, true) // default: false
-
-        // MY_SCAN_REQUEST_CODE is arbitrary and is only used within this activity.
-        startActivityForResult(scanIntent, 0)
+    private fun onHeroClick(hero: Hero) {
+        presenter.onHeroClicked(hero)
     }
 
     companion object {

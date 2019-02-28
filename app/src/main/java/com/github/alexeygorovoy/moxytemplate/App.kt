@@ -1,15 +1,13 @@
 package com.github.alexeygorovoy.moxytemplate
 
-import android.app.Application
-
+import androidx.multidex.MultiDexApplication
 import com.github.alexeygorovoy.moxytemplate.dagger.app.AppComponent
 import com.github.alexeygorovoy.moxytemplate.dagger.app.AppContextModule
 import com.github.alexeygorovoy.moxytemplate.dagger.app.DaggerAppComponent
 import com.squareup.leakcanary.LeakCanary
-
 import timber.log.Timber
 
-class App : Application() {
+class App : MultiDexApplication() {
 
     lateinit var appComponent: AppComponent
         private set
@@ -35,7 +33,7 @@ class App : Application() {
             Timber.plant(Timber.DebugTree())
         } else {
             Timber.plant(object : Timber.Tree() {
-                override fun log(priority: Int, tag: String?, message: String?, t: Throwable?) {
+                override fun log(priority: Int, tag: String?, message: String, t: Throwable?) {
                     //TODO  decide what to log in release version
                 }
             })

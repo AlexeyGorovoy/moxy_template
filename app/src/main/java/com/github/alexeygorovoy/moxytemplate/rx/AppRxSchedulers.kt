@@ -1,10 +1,10 @@
-package com.github.alexeygorovoy.moxytemplate.utils.rx
+package com.github.alexeygorovoy.moxytemplate.rx
 
 import rx.Scheduler
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 
-class AppRxSchedulers : RxSchedulers() {
+class AppRxSchedulers: RxSchedulers() {
 
     override fun mainThread(): Scheduler {
         return AndroidSchedulers.mainThread()

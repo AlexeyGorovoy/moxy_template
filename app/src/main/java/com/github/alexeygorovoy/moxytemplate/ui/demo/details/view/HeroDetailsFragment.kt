@@ -14,7 +14,6 @@ import com.github.alexeygorovoy.moxytemplate.dagger.demo.details.HeroDetailsModu
 import com.github.alexeygorovoy.moxytemplate.ui.common.moxy.BaseMvpFragment
 import com.github.alexeygorovoy.moxytemplate.ui.demo.details.presenter.HeroDetailsPresenter
 import kotlinx.android.synthetic.main.fragment_hero_details.*
-import timber.log.Timber
 import javax.inject.Inject
 
 class HeroDetailsFragment : BaseMvpFragment(), HeroDetailsView {
@@ -24,21 +23,12 @@ class HeroDetailsFragment : BaseMvpFragment(), HeroDetailsView {
     lateinit var presenter: HeroDetailsPresenter
 
     @ProvidePresenter
-    fun providePresenter(): HeroDetailsPresenter {
-        val arguments = arguments
-        if (arguments != null) {
-            val hero = arguments.getSerializable(ARG_HERO) as? Hero
-            if (hero != null) {
-                presenter.setHero(hero)
-            } else {
-                Timber.e("No hero provided!")
-            }
-        }
-        return presenter
-    }
+    fun providePresenter(): HeroDetailsPresenter = presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        activityComponent.plus(HeroDetailsModule()).inject(this)
+        val hero = arguments!!.getSerializable(ARG_HERO) as Hero
+
+        activityComponent.plus(HeroDetailsModule(hero)).inject(this)
         super.onCreate(savedInstanceState)
     }
 
