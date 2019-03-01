@@ -28,16 +28,6 @@ class SplashFragment : BaseMvpFragment(), SplashView {
         super.onCreate(savedInstanceState)
     }
 
-    override fun onResume() {
-        super.onResume()
-        baseActivity.supportActionBar?.hide()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        baseActivity.supportActionBar?.show()
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.splash_fragment, container, false)
     }
