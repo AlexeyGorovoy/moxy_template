@@ -2,16 +2,15 @@ package com.github.alexeygorovoy.moxytemplate.ui.common.moxy
 
 import com.arellomobile.mvp.MvpPresenter
 import com.arellomobile.mvp.MvpView
-import rx.Completable
-
-import rx.Observable
-import rx.Single
-import rx.Subscription
-import rx.subscriptions.CompositeSubscription
+import io.reactivex.Completable
+import io.reactivex.Observable
+import io.reactivex.Single
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 
 abstract class BaseMvpPresenter<View : MvpView> : MvpPresenter<View>() {
 
-    private val subscriptions = CompositeSubscription()
+    private val disposables = CompositeDisposable()
 
     protected fun <T> Observable<T>.progress(): Observable<T> {
         return doOnSubscribe {
@@ -46,12 +45,13 @@ abstract class BaseMvpPresenter<View : MvpView> : MvpPresenter<View>() {
     }
 
 
-    protected fun Subscription.unsubscribeOnDestroy() {
-        subscriptions.add(this)
+    protected fun Disposable.unsubscribeOnDestroy(): Disposable {
+        disposables.add(this)
+        return this
     }
 
     override fun onDestroy() {
-        subscriptions.unsubscribe()
+        disposables.dispose()
         super.onDestroy()
     }
 }

@@ -1,9 +1,7 @@
 package com.github.alexeygorovoy.moxytemplate.rx
 
-import rx.Completable
-import rx.Observable
-import rx.Scheduler
-import rx.Single
+import io.reactivex.*
+
 
 abstract class RxSchedulers {
 
@@ -13,40 +11,40 @@ abstract class RxSchedulers {
 
     abstract fun computation(): Scheduler
 
-    fun <T> ioToMain(): Observable.Transformer<T, T> {
-        return Observable.Transformer { objectObservable ->
+    fun <T> ioToMain(): ObservableTransformer<T, T> {
+        return ObservableTransformer { objectObservable ->
             objectObservable
                 .subscribeOn(io())
                 .observeOn(mainThread())
         }
     }
 
-    fun ioToMainCompletable(): Completable.Transformer {
-        return Completable.Transformer { completable ->
+    fun ioToMainCompletable(): CompletableTransformer {
+        return CompletableTransformer { completable ->
             completable
                 .subscribeOn(io())
                 .observeOn(mainThread())
         }
     }
 
-    fun <T> ioToMainSingle(): Single.Transformer<T, T> {
-        return Single.Transformer { objectObservable ->
+    fun <T> ioToMainSingle(): SingleTransformer<T, T> {
+        return SingleTransformer { objectObservable ->
             objectObservable
                 .subscribeOn(io())
                 .observeOn(mainThread())
         }
     }
 
-    fun <T> computationToMain(): Observable.Transformer<T, T> {
-        return Observable.Transformer { objectObservable ->
+    fun <T> computationToMain(): ObservableTransformer<T, T> {
+        return ObservableTransformer { objectObservable ->
             objectObservable
                 .subscribeOn(computation())
                 .observeOn(mainThread())
         }
     }
 
-    fun <T> computationToMainSingle(): Single.Transformer<T, T> {
-        return Single.Transformer { objectObservable ->
+    fun <T> computationToMainSingle(): SingleTransformer<T, T> {
+        return SingleTransformer { objectObservable ->
             objectObservable
                 .subscribeOn(computation())
                 .observeOn(mainThread())
