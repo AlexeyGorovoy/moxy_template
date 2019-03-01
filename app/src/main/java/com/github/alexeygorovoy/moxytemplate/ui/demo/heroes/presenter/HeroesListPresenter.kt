@@ -3,17 +3,20 @@ package com.github.alexeygorovoy.moxytemplate.ui.demo.heroes.presenter
 import com.arellomobile.mvp.InjectViewState
 import com.github.alexeygorovoy.moxytemplate.api.HeroApi
 import com.github.alexeygorovoy.moxytemplate.api.models.Hero
+import com.github.alexeygorovoy.moxytemplate.navigation.Router
+import com.github.alexeygorovoy.moxytemplate.rx.RxSchedulers
 import com.github.alexeygorovoy.moxytemplate.ui.common.moxy.BaseMvpPresenter
 import com.github.alexeygorovoy.moxytemplate.ui.demo.heroes.view.HeroesListView
-import com.github.alexeygorovoy.moxytemplate.utils.rx.RxSchedulers
 import timber.log.Timber
-import java.util.ArrayList
+import java.util.*
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
 @InjectViewState
-class HeroesListPresenter(
+class HeroesListPresenter @Inject internal constructor(
     private val heroApi: HeroApi,
-    private val rxSchedulers: RxSchedulers
+    private val rxSchedulers: RxSchedulers,
+    private val router: Router
 ) : BaseMvpPresenter<HeroesListView>() {
 
     private val heroes = ArrayList<Hero>()
@@ -36,5 +39,9 @@ class HeroesListPresenter(
                 },
                 { throwable -> Timber.e(throwable, "Error loading heroes list!") }
             ).unsubscribeOnDestroy()
+    }
+
+    fun onHeroClicked(hero: Hero) {
+        router.openHeroDetailsScreen(hero)
     }
 }

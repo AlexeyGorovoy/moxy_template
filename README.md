@@ -6,14 +6,13 @@ Originally based on [this project by @yassine-gharsallah](https://github.com/yas
 Libraries included:
 - [Moxy](https://github.com/Arello-Mobile/Moxy)
 - [Dagger (2.x)](https://github.com/google/dagger)
-- [RxJava (1.x)](https://github.com/ReactiveX/RxJava)
-- [RxAndroid](https://github.com/ReactiveX/RxAndroid)
+- [RxJava (2.x)](https://github.com/ReactiveX/RxJava)
+- [RxAndroid (2.x)](https://github.com/ReactiveX/RxAndroid)
 - [Retrofit](https://github.com/square/retrofit)
-- [ButterKnife](https://github.com/JakeWharton/butterknife)
 - [Timber](https://github.com/JakeWharton/timber) 
 - [LeakCanary](https://github.com/square/leakcanary)
 - [Glide](https://github.com/bumptech/glide)
 - [Gson](https://github.com/google/gson)
-- a bunch of Android Support libraries.
+- a bunch of AndroidX libraries.
 
-All libraries included are the latest versions available on April 10, 2018.
+All libraries included are the latest versions available on March 01, 2019.

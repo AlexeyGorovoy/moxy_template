@@ -1,13 +1,13 @@
 package com.github.alexeygorovoy.moxytemplate.dagger.app
 
 import com.github.alexeygorovoy.moxytemplate.api.HeroApi
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
@@ -15,7 +15,7 @@ class NetworkModule {
 
     @AppScope
     @Provides
-    internal fun provideApiService(client: OkHttpClient, gson: GsonConverterFactory, rxAdapter: RxJavaCallAdapterFactory): HeroApi {
+    internal fun provideApiService(client: OkHttpClient, gson: GsonConverterFactory, rxAdapter: RxJava2CallAdapterFactory): HeroApi {
         val retrofit = Retrofit.Builder()
             .client(client)
             .baseUrl(BASE_URL)
@@ -45,8 +45,8 @@ class NetworkModule {
 
     @AppScope
     @Provides
-    internal fun provideRxAdapter(): RxJavaCallAdapterFactory {
-        return RxJavaCallAdapterFactory.create()
+    internal fun provideRxAdapter(): RxJava2CallAdapterFactory {
+        return RxJava2CallAdapterFactory.create()
     }
 
     @Provides

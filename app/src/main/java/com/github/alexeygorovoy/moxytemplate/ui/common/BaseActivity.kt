@@ -1,16 +1,22 @@
 package com.github.alexeygorovoy.moxytemplate.ui.common
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 
 import com.github.alexeygorovoy.moxytemplate.App
 import com.github.alexeygorovoy.moxytemplate.R
 import com.github.alexeygorovoy.moxytemplate.dagger.activity.ActivityComponent
 import com.github.alexeygorovoy.moxytemplate.dagger.activity.ActivityModule
+import com.github.alexeygorovoy.moxytemplate.navigation.Navigator
+import ru.terrakok.cicerone.NavigatorHolder
+import javax.inject.Inject
 
 abstract class BaseActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var navigatorHolder: NavigatorHolder
+
+    private val navigator: Navigator = Navigator(this, R.id.fragmentContainer)
 
     private var activityComponent: ActivityComponent? = null
 
@@ -19,7 +25,7 @@ abstract class BaseActivity : AppCompatActivity() {
             .also { activityComponent = it }
     }
 
-    private fun createComponent() = (application as App).appComponent.plus(ActivityModule())
+    private fun createComponent() = (application as App).appComponent.plus(ActivityModule(this))
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,17 +33,13 @@ abstract class BaseActivity : AppCompatActivity() {
         getActivityComponent().inject(this)
     }
 
-    fun replaceToFragment(fragment: Fragment) {
-        val fragmentManager = supportFragmentManager
-        fragmentManager
-            .beginTransaction()
-            .replace(R.id.fragmentContainer, fragment)
-            .addToBackStack(BACK_STACK_TAG)
-            .commit()
+    override fun onResume() {
+        super.onResume()
+        navigatorHolder.setNavigator(navigator)
     }
 
-    companion object {
-
-        private const val BACK_STACK_TAG = "back_stack_tag"
+    override fun onPause() {
+        super.onPause()
+        navigatorHolder.removeNavigator()
     }
 }

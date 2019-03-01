@@ -6,10 +6,9 @@ import android.view.View
 import com.bumptech.glide.Glide
 import com.github.alexeygorovoy.moxytemplate.api.models.Hero
 import com.github.alexeygorovoy.moxytemplate.ui.common.adapter.BaseViewHolder
-import kotlinx.android.synthetic.main.item_hero.*
-import rx.subjects.PublishSubject
+import kotlinx.android.synthetic.main.hero_item.*
 
-class HeroViewHolder (itemView: View, private val clickSubject: PublishSubject<Hero>) : BaseViewHolder(itemView) {
+class HeroViewHolder (itemView: View, private val onClickAction: (hero: Hero) -> Unit) : BaseViewHolder(itemView) {
 
     internal fun bind(hero: Hero) {
         Glide.with(itemView.context)
@@ -21,6 +20,6 @@ class HeroViewHolder (itemView: View, private val clickSubject: PublishSubject<H
         itemHeroText.text = if (TextUtils.isEmpty(hero.intro)) "missing text" else hero.intro
         itemHeroSeparator.setBackgroundColor(Color.parseColor(hero.color))
 
-        itemView.setOnClickListener { _ -> clickSubject.onNext(hero) }
+        itemView.setOnClickListener { onClickAction(hero) }
     }
 }
