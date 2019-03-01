@@ -5,6 +5,7 @@ Originally based on [this project by @yassine-gharsallah](https://github.com/yas
 
 Libraries included:
 - [Moxy](https://github.com/Arello-Mobile/Moxy)
+- [Cicerone](https://github.com/terrakok/Cicerone)
 - [Dagger (2.x)](https://github.com/google/dagger)
 - [RxJava (2.x)](https://github.com/ReactiveX/RxJava)
 - [RxAndroid (2.x)](https://github.com/ReactiveX/RxAndroid)
