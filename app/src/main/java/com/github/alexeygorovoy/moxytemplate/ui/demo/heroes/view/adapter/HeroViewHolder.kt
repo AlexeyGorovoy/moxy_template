@@ -7,7 +7,6 @@ import com.bumptech.glide.Glide
 import com.github.alexeygorovoy.moxytemplate.api.models.Hero
 import com.github.alexeygorovoy.moxytemplate.ui.common.adapter.BaseViewHolder
 import kotlinx.android.synthetic.main.hero_item.*
-import rx.subjects.PublishSubject
 
 class HeroViewHolder (itemView: View, private val onClickAction: (hero: Hero) -> Unit) : BaseViewHolder(itemView) {
 
