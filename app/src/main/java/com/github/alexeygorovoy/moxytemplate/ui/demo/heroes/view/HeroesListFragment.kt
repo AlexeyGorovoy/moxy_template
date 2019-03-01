@@ -10,7 +10,6 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.github.alexeygorovoy.moxytemplate.R
 import com.github.alexeygorovoy.moxytemplate.api.models.Hero
 import com.github.alexeygorovoy.moxytemplate.dagger.demo.heroes.HeroesModule
-import com.github.alexeygorovoy.moxytemplate.navigation.Router
 import com.github.alexeygorovoy.moxytemplate.ui.common.moxy.BaseMvpFragment
 import com.github.alexeygorovoy.moxytemplate.ui.demo.heroes.presenter.HeroesListPresenter
 import com.github.alexeygorovoy.moxytemplate.ui.demo.heroes.view.adapter.HeroesAdapter
@@ -18,9 +17,6 @@ import kotlinx.android.synthetic.main.heroes_list_fragment.*
 import javax.inject.Inject
 
 class HeroesListFragment : BaseMvpFragment(), HeroesListView {
-
-    @Inject
-    lateinit var router: Router
 
     @Inject
     @InjectPresenter
