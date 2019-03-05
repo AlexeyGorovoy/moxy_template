@@ -1,33 +1,18 @@
 package com.github.alexeygorovoy.moxytemplate.ui.demo.heroes.view.adapter
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
-import com.github.alexeygorovoy.moxytemplate.R
 import com.github.alexeygorovoy.moxytemplate.api.models.Hero
-import java.util.ArrayList
+import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 
-class HeroesAdapter(private val onClickListener: (hero: Hero) -> Unit) : RecyclerView.Adapter<HeroViewHolder>() {
+class HeroesAdapter(
+    onClickListener: (hero: Hero) -> Unit
+) : ListDelegationAdapter<List<Hero>>() {
 
-    private val listHeroes = ArrayList<Hero>()
+    init {
+        delegatesManager.addDelegate(HeroAdapterDelegate(onClickListener))
+    }
 
-    fun setItems(heroes: List<Hero>) {
-        this.listHeroes.clear()
-        this.listHeroes.addAll(heroes)
+    override fun setItems(items: List<Hero>?) {
+        super.setItems(items)
         notifyDataSetChanged()
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HeroViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.hero_item, parent, false)
-        return HeroViewHolder(view, onClickListener)
-    }
-
-    override fun onBindViewHolder(holder: HeroViewHolder, position: Int) {
-        val hero = listHeroes[position]
-        holder.bind(hero)
-    }
-
-    override fun getItemCount(): Int {
-        return listHeroes.size
     }
 }

@@ -17,7 +17,7 @@ class Screens {
 
     class HeroesListScreen : SupportAppScreen() {
         override fun getFragment(): Fragment {
-            return HeroesListFragment()
+            return HeroesListFragment.newInstance()
         }
     }
 
@@ -26,5 +26,4 @@ class Screens {
             return SplashFragment()
         }
     }
-
 }

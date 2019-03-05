@@ -45,7 +45,7 @@ class HeroesListFragment : BaseMvpFragment(), HeroesListView {
     }
 
     override fun showHeroes(heroes: List<Hero>) {
-        adapter.setItems(heroes)
+        adapter.items = heroes
     }
 
     override fun showProgress() {

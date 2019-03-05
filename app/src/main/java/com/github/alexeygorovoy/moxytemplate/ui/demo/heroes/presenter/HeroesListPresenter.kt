@@ -8,7 +8,7 @@ import com.github.alexeygorovoy.moxytemplate.rx.RxSchedulers
 import com.github.alexeygorovoy.moxytemplate.ui.common.moxy.BaseMvpPresenter
 import com.github.alexeygorovoy.moxytemplate.ui.demo.heroes.view.HeroesListView
 import timber.log.Timber
-import java.util.*
+import java.util.ArrayList
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
